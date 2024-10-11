@@ -32,11 +32,6 @@ public class TourEntity {
     @Column(name = "Duration", nullable = false)
     private String duration;
 
-    @Column(name = "StartDate", nullable = false)
-    private Date startDate;
-
-    @Column(name = "EndDate", nullable = false)
-    private Date endDate;
 
     @Column(name = "AvailableSlots", nullable = false)
     private int availableSlots;
@@ -70,8 +65,6 @@ public class TourEntity {
         this.description = description;
         this.price = price;
         this.duration = duration;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.availableSlots = availableSlots;
         this.mainImageID = mainImageID;
         this.statusID = statusID;
@@ -144,21 +137,6 @@ public class TourEntity {
         this.duration = duration;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
 
     public int getAvailableSlots() {
         return availableSlots;

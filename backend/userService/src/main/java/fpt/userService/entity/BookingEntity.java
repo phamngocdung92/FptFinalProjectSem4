@@ -19,6 +19,11 @@ public class BookingEntity {
 
     @Column(name = "BookingDate", nullable = false)
     private Date bookingDate;
+    @Column(name = "StartDate", nullable = false)
+    private Date startDate;
+
+    @Column(name = "EndDate", nullable = false)
+    private Date endDate;
 
     @Column(name = "StatusID", nullable = false)
     private int statusID;
@@ -54,6 +59,8 @@ public class BookingEntity {
         this.statusID = statusID;
         this.phoneNumber = phoneNumber;
         this.contactName = contactName;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.dbStatus = dbStatus;
         this.paymentID = paymentID;
         this.createdAt = createdAt;
@@ -116,6 +123,21 @@ public class BookingEntity {
         this.contactName = contactName;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
     public int getDbStatus() {
         return dbStatus;
     }

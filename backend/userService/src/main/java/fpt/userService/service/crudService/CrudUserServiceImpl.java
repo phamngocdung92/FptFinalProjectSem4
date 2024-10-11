@@ -31,6 +31,7 @@ public class CrudUserServiceImpl implements CrudUserService {
         UserEntity userEntity = user.toUserEntity();
 
         userEntity.setUserId(null);
+        userEntity.setProfileImageId(null);
 
         // Set timestamps
         LocalDateTime now = LocalDateTime.now();
@@ -47,17 +48,37 @@ public class CrudUserServiceImpl implements CrudUserService {
         Optional<UserEntity> userOptional = crudUserRepository.findById(id);
         if (userOptional.isPresent()){
             UserEntity userEntity = userOptional.get();
-            userEntity.setUsername(user.getUsername());
-            userEntity.setPassword(user.getPassword());
-            userEntity.setEmail(user.getEmail());
-            userEntity.setFullName(user.getFullName());
-            userEntity.setPhoneNumber(user.getPhoneNumber());
-            userEntity.setAddress(user.getAddress());
-            userEntity.setProfileImageId(user.getProfileImageId());
-            userEntity.setStatusId(user.getStatusId());
-            userEntity.setDbStatus(user.getDbStatus());
-            userEntity.setCreatedAt(user.getCreatedAt());
-            userEntity.setUpdatedAt(user.getUpdatedAt());
+            if (user.getUsername() != null) {
+                userEntity.setUsername(user.getUsername());
+            }
+            if (user.getPassword() != null) {
+                userEntity.setPassword(user.getPassword());
+            }
+            if (user.getEmail() != null) {
+                userEntity.setEmail(user.getEmail());
+            }
+            if (user.getFullName() != null) {
+                userEntity.setFullName(user.getFullName());
+            }
+            if (user.getPhoneNumber() != null) {
+                userEntity.setPhoneNumber(user.getPhoneNumber());
+            }
+            if (user.getAddress() != null) {
+                userEntity.setAddress(user.getAddress());
+            }
+            if (user.getProfileImageId() != 0) {
+                userEntity.setProfileImageId(user.getProfileImageId());
+            }
+            if (user.getStatusId() != 0) {
+                userEntity.setStatusId(user.getStatusId());
+            }
+            if (user.getDbStatus() != 0) {
+                userEntity.setDbStatus(user.getDbStatus());
+            }
+
+            // Set timestamp chỉ cho updatedAt vì createdAt giữ nguyên giá trị ban đầu
+            userEntity.setUpdatedAt(LocalDateTime.now());
+
             return crudUserRepository.save(userEntity);
         }
         return null;
