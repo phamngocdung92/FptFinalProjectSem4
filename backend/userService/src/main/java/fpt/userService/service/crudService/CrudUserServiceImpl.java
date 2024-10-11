@@ -1,6 +1,6 @@
 package fpt.userService.service.crudService;
 
-import fpt.userService.dto.responseDTO.resUserDto;
+import fpt.userService.dto.user.UserDto;
 import fpt.userService.entity.UserEntity;
 import fpt.userService.repository.crudRepository.CrudUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class CrudUserServiceImpl implements CrudUserService {
         return crudUserRepository.findById(id).orElse(null);
     }
     @Override
-    public UserEntity createUser(resUserDto user){
+    public UserEntity createUser(UserDto user){
         // Convert DTO to entity
         UserEntity userEntity = user.toUserEntity();
 
@@ -44,7 +44,7 @@ public class CrudUserServiceImpl implements CrudUserService {
         return crudUserRepository.save(userEntity);
     }
     @Override
-    public UserEntity updateUser (int id, resUserDto user){
+    public UserEntity updateUser (int id, UserDto user){
         Optional<UserEntity> userOptional = crudUserRepository.findById(id);
         if (userOptional.isPresent()){
             UserEntity userEntity = userOptional.get();

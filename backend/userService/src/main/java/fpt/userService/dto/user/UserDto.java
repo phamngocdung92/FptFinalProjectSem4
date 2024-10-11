@@ -1,10 +1,10 @@
-package fpt.userService.dto.responseDTO;
+package fpt.userService.dto.user;
 
 import fpt.userService.entity.UserEntity;
 
 import java.time.LocalDateTime;
 
-public class resUserDto {
+public class UserDto {
     private int userId;
     private String username;
     private String password;
@@ -114,7 +114,7 @@ public class resUserDto {
         this.updatedAt = updatedAt;
     }
 
-    public resUserDto(int userId, String username, String password, String email, String fullName, String phoneNumber, String address, int profileImageId, int statusId, int dbStatus, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public UserDto(int userId, String username, String password, String email, String fullName, String phoneNumber, String address, int profileImageId, int statusId, int dbStatus, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.userId = userId;
         this.username = username;
         this.password = password;

@@ -1,6 +1,6 @@
 package fpt.userService.controller;
 
-import fpt.userService.dto.responseDTO.resUserDto;
+import fpt.userService.dto.user.UserDto;
 import fpt.userService.entity.UserEntity;
 import fpt.userService.service.crudService.CrudUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +37,13 @@ public class CrudUserController {
     }
     //create user
     @PostMapping("/create")
-    public ResponseEntity<UserEntity> createUser(@RequestBody resUserDto user) {
+    public ResponseEntity<UserEntity> createUser(@RequestBody UserDto user) {
         UserEntity createdUser = crudUserService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
     //update user
     @PutMapping("/{id}")
-    public ResponseEntity<UserEntity> updateUser(@PathVariable int id, @RequestBody resUserDto user) {
+    public ResponseEntity<UserEntity> updateUser(@PathVariable int id, @RequestBody UserDto user) {
         UserEntity updatedUser = crudUserService.updateUser(id, user);
         if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);
