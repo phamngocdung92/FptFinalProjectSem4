@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @RestController
@@ -31,4 +34,33 @@ public class UserBusinessController {
         List<TourEntity> resTourDtos = userBusinessService.findTourByLocation(LocationName.getLocationName());
         return ResponseEntity.ok(resTourDtos);
     }
+    @PostMapping("/find-tour-by-search") //search: location + person + start date + end date
+    public ResponseEntity<List<TourEntity>> findTourBySearch(@RequestBody SearchTourDto searchTourDto) {
+        LocalDate startDate = searchTourDto.getStartDate();
+        LocalDate endDate = searchTourDto.getEndDate();
+        String durationString = "";
+        int person = searchTourDto.getPerson();
+
+        if (startDate != null && endDate != null && startDate.isBefore(endDate)) {
+            // Calculate the duration in days
+            long tempDuration = ChronoUnit.DAYS.between(startDate, endDate);
+            // Convert the duration to a String
+            durationString = String.valueOf(tempDuration);
+        } else if (startDate != null && endDate != null && startDate.isEqual(endDate)) {
+            // If the dates are equal, the duration is 0
+            durationString = "0";
+        } else {
+            // If the dates are invalid, the duration is -1
+            durationString = "-1";
+        }
+
+        SearchTourDto inputParam = new SearchTourDto();
+        inputParam.setLocationName(searchTourDto.getLocationName());
+        inputParam.setDuration(durationString);
+        inputParam.setPerson(searchTourDto.getPerson());
+
+        List<TourEntity> resTourDtos = userBusinessService.findTourBySearch(inputParam);
+        return ResponseEntity.ok(resTourDtos);
+    }
+
 }

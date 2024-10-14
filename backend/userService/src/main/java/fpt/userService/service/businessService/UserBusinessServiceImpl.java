@@ -1,6 +1,6 @@
 package fpt.userService.service.businessService;
 
-import fpt.userService.dto.tour.TourDto;
+import fpt.userService.dto.tour.SearchTourDto;
 import fpt.userService.entity.TourEntity;
 import fpt.userService.repository.businessRepository.UserBusinessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +22,9 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     @Override
     public List<TourEntity> findTourByLocation(String locationName) {
         return userBusinessRepository.findTourByLocation(locationName);
+    }
+    @Override
+    public List<TourEntity> findTourBySearch(SearchTourDto searchTourDto) {
+        return userBusinessRepository.findTourBySearch(searchTourDto.getLocationName(), searchTourDto.getDuration(), searchTourDto.getPerson());
     }
 }
