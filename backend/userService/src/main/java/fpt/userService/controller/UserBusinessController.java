@@ -5,10 +5,7 @@ import fpt.userService.entity.TourEntity;
 import fpt.userService.service.businessService.UserBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -61,6 +58,10 @@ public class UserBusinessController {
 
         List<TourEntity> resTourDtos = userBusinessService.findTourBySearch(inputParam);
         return ResponseEntity.ok(resTourDtos);
+    }
+    @GetMapping("/find-tour-by-id/{id}")
+    public ResponseEntity<TourEntity> findTourById(@PathVariable int id) {
+        return ResponseEntity.ok(userBusinessService.findTourById(id));
     }
 
 }

@@ -15,4 +15,6 @@ public interface UserBusinessRepository extends JpaRepository<TourEntity, Intege
     List<TourEntity> findTourByLocation(@Param("locationName") String locationName);
     @Query(value = "SELECT t.* FROM tours t JOIN locations l ON t.locationID = l.locationID WHERE LOWER(l.Name) LIKE LOWER(CONCAT('%', :locationName, '%')) AND t.AvailableSlots >= :person AND t.Duration >= :duration", nativeQuery = true)
     List<TourEntity> findTourBySearch(@Param("locationName") String locationName, @Param("duration") String duration, @Param("person") int person);
+    @Query(value = "SELECT * FROM tours t WHERE t.TourID = :id", nativeQuery = true)
+    TourEntity findTourById(@Param("id") int id);
 }

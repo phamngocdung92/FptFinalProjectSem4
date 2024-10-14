@@ -9,4 +9,5 @@ public interface UserBusinessService {
     List<TourEntity> findTourByName(String tourName);
     List<TourEntity> findTourByLocation(String locationName);
     List<TourEntity> findTourBySearch(SearchTourDto searchTourDto);
+    TourEntity findTourById(int id);
 }

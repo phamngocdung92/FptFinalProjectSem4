@@ -27,4 +27,8 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     public List<TourEntity> findTourBySearch(SearchTourDto searchTourDto) {
         return userBusinessRepository.findTourBySearch(searchTourDto.getLocationName(), searchTourDto.getDuration(), searchTourDto.getPerson());
     }
+    @Override
+    public TourEntity findTourById(int id) {
+        return userBusinessRepository.findTourById(id);
+    }
 }
