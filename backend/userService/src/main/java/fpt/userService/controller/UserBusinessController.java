@@ -1,7 +1,6 @@
 package fpt.userService.controller;
 
-import fpt.userService.dto.tour.SearchTourByNameDto;
-import fpt.userService.dto.tour.TourDto;
+import fpt.userService.dto.tour.SearchTourDto;
 import fpt.userService.entity.TourEntity;
 import fpt.userService.service.businessService.UserBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,13 @@ public class UserBusinessController {
     }
     //find tour by input
     @PostMapping("/find-tour-by-name")
-    public ResponseEntity<List<TourEntity>> findTourByName(@RequestBody SearchTourByNameDto TourName) {
-        List<TourEntity> resTourDtos = userBusinessService.findTourByName(TourName.getname());
+    public ResponseEntity<List<TourEntity>> findTourByName(@RequestBody SearchTourDto TourName) {
+        List<TourEntity> resTourDtos = userBusinessService.findTourByName(TourName.getTourName());
+        return ResponseEntity.ok(resTourDtos);
+    }
+    @PostMapping("/find-tour-by-location")
+    public ResponseEntity<List<TourEntity>> findTourByLocation(@RequestBody SearchTourDto LocationName) {
+        List<TourEntity> resTourDtos = userBusinessService.findTourByLocation(LocationName.getLocationName());
         return ResponseEntity.ok(resTourDtos);
     }
 }

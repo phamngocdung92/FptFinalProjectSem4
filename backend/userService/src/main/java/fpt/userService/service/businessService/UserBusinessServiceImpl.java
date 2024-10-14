@@ -19,5 +19,8 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     public List<TourEntity> findTourByName(String tourName) {
         return userBusinessRepository.findTourByName(tourName);
     }
-
+    @Override
+    public List<TourEntity> findTourByLocation(String locationName) {
+        return userBusinessRepository.findTourByLocation(locationName);
+    }
 }

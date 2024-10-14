@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserBusinessService {
     List<TourEntity> findTourByName(String tourName);
+    List<TourEntity> findTourByLocation(String locationName);
 }
