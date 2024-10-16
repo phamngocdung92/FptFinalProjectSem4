@@ -64,4 +64,14 @@ public class UserBusinessController {
         return ResponseEntity.ok(userBusinessService.findTourById(id));
     }
 
+    //findTourByHighestRating
+    @GetMapping("/find-tour-by-highest-rating")
+    public ResponseEntity<List<TourEntity>> findTourByRating() {
+        return ResponseEntity.ok(userBusinessService.findTourByHighestRating());
+    }
+    /*SELECT * FROM tours t
+join reviews r on t.TourID = r.TourID
+where r.Rating = (SELECT MAX(Rating) FROM reviews)
+    * */
+
 }
